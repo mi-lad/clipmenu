@@ -61,7 +61,7 @@ file=$cache_dir/$(cksum <<< "$chosen_line")
 [[ -f "$file" ]] || exit 2
 
 if (( CM_OUTPUT_CLIP )); then
-    echo -n "$chosen_line" | xclip -selection clipboard | xdotool key Ctrl+Shift+V
+    xclip -selection clipboard $file | xdotool key Ctrl+Shift+V
 else
     for selection in clipboard primary; do
         xsel --logfile /dev/null -i --"$selection" < "$file"
